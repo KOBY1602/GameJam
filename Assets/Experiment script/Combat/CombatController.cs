@@ -9,7 +9,7 @@ public class CombatController : MonoBehaviour
     [SerializeField] GameObject PlacementSystem;
     [SerializeField] GameObject PencilSword;
     [SerializeField] GameObject Plane;
-    
+
     public FirstPersonController firstPersonController;
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class CombatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (Input.GetMouseButton(0))
         {
             firstPersonController.Attacking();
@@ -36,7 +36,7 @@ public class CombatController : MonoBehaviour
         }
         else
         {
-            
+
             Cursor.lockState = CursorLockMode.Locked;
             firstPersonController.NotAttacking();
             InputManager.SetActive(false);

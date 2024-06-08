@@ -14,12 +14,12 @@ public class FaceTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     void IdleForm()
     {
         this.transform.position = idlePosition;
-        this.transform.rotation = Quaternion.Euler(idleRotation); 
+        this.transform.rotation = Quaternion.Euler(idleRotation);
     }
     void AttackForm()
     {
