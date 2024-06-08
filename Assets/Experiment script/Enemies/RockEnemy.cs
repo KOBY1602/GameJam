@@ -144,8 +144,10 @@ public class RockEnemy : MonoBehaviour
             // Attack
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
 
-            rb.AddForce(transform.forward * 20f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 4, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 2, ForceMode.Impulse);
+
+            Destroy(rb.gameObject, 3f);
 
             alreadyAttacked = true;
             Invoke("ResetAttack", timeBetweenAttacks);
@@ -159,14 +161,9 @@ public class RockEnemy : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void ApplyDamage(int damageAmount)
+    public void FlashFeedback()
     {
-        Debug.Log("Damaged");
-        if (enemyHealth != null)
-        {
-            enemyHealth.TakeDamage(damageAmount);
-            StartCoroutine(FlashRed());
-        }
+         StartCoroutine(FlashRed());
     }
 
     private void Destroy()
@@ -188,7 +185,7 @@ public class RockEnemy : MonoBehaviour
         {
             Debug.Log("Changed Red");
             enemyRenderer.material.color = Color.red;
-            yield return new WaitForSeconds(1f); // Adjust the duration as needed
+            yield return new WaitForSeconds(0.5f); // Adjust the duration as needed
             enemyRenderer.material.color = originalColor;
         }
     }
