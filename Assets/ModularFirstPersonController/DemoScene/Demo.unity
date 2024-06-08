@@ -4203,7 +4203,9 @@ MonoBehaviour:
   PlacementSystem: {fileID: 21959033}
   PencilSword: {fileID: 1293749776}
   Plane: {fileID: 1263304063}
+  SwordParent: {fileID: 0}
   firstPersonController: {fileID: 86975220}
+  FaceTarget: {fileID: 0}
 --- !u!1 &1483835289
 GameObject:
   m_ObjectHideFlags: 0
@@ -5468,7 +5470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 342349f4cd1d46040a0b4e880e992838, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.121456
+      value: 5.43
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 342349f4cd1d46040a0b4e880e992838, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5476,7 +5478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 342349f4cd1d46040a0b4e880e992838, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.7684398
+      value: 4.55
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 342349f4cd1d46040a0b4e880e992838, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5565,9 +5567,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   health: 3
-  walkPoint: {x: 1, y: 1, z: 1}
+  walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
-  timeBetweenAttacks: 5
+  timeBetweenAttacks: 3
   projectile: {fileID: 6166728264073954736, guid: 2efe4ec4f5dead1459b08206b5cf780b, type: 3}
   sightRange: 20
   attackRange: 12

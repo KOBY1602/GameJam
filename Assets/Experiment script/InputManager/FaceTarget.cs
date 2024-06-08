@@ -29,8 +29,6 @@ public class FaceTarget : MonoBehaviour
             // Calculate the direction from the current object to the target
             Vector3 directionToTarget = target.position - transform.position;
 
-
-
             // Rotate the object to face the target
             if (directionToTarget != Vector3.zero)
             {
