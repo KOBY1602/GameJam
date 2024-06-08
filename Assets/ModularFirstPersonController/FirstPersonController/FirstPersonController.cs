@@ -535,6 +535,10 @@ public class FirstPersonController : MonoBehaviour
     {
         mouseSensitivity = 0.1f;
     }
+    public void NotAttacking()
+    {
+        mouseSensitivity = 2f;
+    }
 }
 
 

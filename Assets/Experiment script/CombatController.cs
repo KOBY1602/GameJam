@@ -16,8 +16,6 @@ public class CombatController : MonoBehaviour
     {
         InputManager.SetActive(false);
         PlacementSystem.SetActive(false);
-        PencilSword.SetActive(false);
-
         Plane.SetActive(false);
         firstPersonController = FindObjectOfType<FirstPersonController>();
     }
@@ -26,14 +24,24 @@ public class CombatController : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetMouseButton(0))
         {
             firstPersonController.Attacking();
             InputManager.SetActive(true);
             PlacementSystem.SetActive(true);
             PencilSword.SetActive(true);
             Plane.SetActive(true);
+            Cursor.lockState = CursorLockMode.Confined;
 
+        }
+        else
+        {
+            
+            Cursor.lockState = CursorLockMode.Locked;
+            firstPersonController.NotAttacking();
+            InputManager.SetActive(false);
+            PlacementSystem.SetActive(false);
+            Plane.SetActive(false);
         }
         //else if (Input.GetKeyDown(KeyCode.)
     }
