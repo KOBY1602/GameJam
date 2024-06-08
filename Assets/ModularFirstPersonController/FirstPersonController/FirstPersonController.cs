@@ -131,6 +131,9 @@ public class FirstPersonController : MonoBehaviour
 
     #endregion
 
+
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -525,6 +528,12 @@ public class FirstPersonController : MonoBehaviour
             timer = 0;
             joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
         }
+    }
+
+
+    public void Attacking()
+    {
+        mouseSensitivity = 0.1f;
     }
 }
 

@@ -6,8 +6,8 @@ using UnityEngine;
 public class FaceTarget : MonoBehaviour
 {
     public Transform target;
-   
 
+   
 
     // Update is called once per frame
     void Update()
@@ -23,7 +23,7 @@ public class FaceTarget : MonoBehaviour
             // Rotate the object to face the target
             if (directionToTarget != Vector3.zero)
             {
-                Quaternion lookRotation = Quaternion.LookRotation(directionToTarget);
+                Quaternion lookRotation = Quaternion.LookRotation(directionToTarget, Vector3.up);
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
             }
         }
