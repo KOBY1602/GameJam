@@ -25,6 +25,8 @@ public class CombatController : MonoBehaviour
     private float horizontalVelocity;
 
     private int isMovingRight; // 1 = right, 0 = left, 3 = not moving
+
+
     void Start()
     {
         
@@ -52,6 +54,7 @@ public class CombatController : MonoBehaviour
             Plane.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
             FaceTarget.AttackForm();
+
         }
         else
         {
