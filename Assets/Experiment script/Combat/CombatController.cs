@@ -9,11 +9,9 @@ public class CombatController : MonoBehaviour
     [SerializeField] GameObject PlacementSystem;
     [SerializeField] GameObject PencilSword;
     [SerializeField] GameObject Plane;
-<<<<<<< Updated upstream:Assets/Experiment script/Combat/CombatController.cs
 
-=======
     [SerializeField] GameObject SwordParent;
->>>>>>> Stashed changes:Assets/Experiment script/CombatController.cs
+
     public FirstPersonController firstPersonController;
     public FaceTarget FaceTarget;
     // Start is called before the first frame update
