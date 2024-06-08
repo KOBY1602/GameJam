@@ -17,8 +17,8 @@ public class MouseLock : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
 
         // Clamp the mouse position to stay within the screen boundaries
-        mousePosition.x = Mathf.Clamp(mousePosition.x, 0f, Screen.width);
-        mousePosition.y = Mathf.Clamp(mousePosition.y, 0f, Screen.height);
+        mousePosition.x = Mathf.Clamp(mousePosition.x, 0f, Screen.width - 100f);
+        mousePosition.y = Mathf.Clamp(mousePosition.y, 0f, Screen.height - 100f);
 
         // Convert the clamped mouse position back to world coordinates
         Vector3 clampedMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
