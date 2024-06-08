@@ -16,12 +16,12 @@ public class FaceTarget : MonoBehaviour
     {
 
     }
-    void IdleForm()
+    public void IdleForm()
     {
         this.transform.position = idlePosition;
         this.transform.rotation = Quaternion.Euler(idleRotation);
     }
-    void AttackForm()
+    public void AttackForm()
     {
         // Check if target is assigned
         if (target != null)
