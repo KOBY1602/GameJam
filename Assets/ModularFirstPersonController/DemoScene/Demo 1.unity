@@ -615,6 +615,7 @@ MonoBehaviour:
   damageAmount: 20
   damageThreshold: 20
   attackCooldown: 1
+  hitEffectPrefab: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
 --- !u!1 &167484302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,6 +1690,7 @@ GameObject:
   - component: {fileID: 591003285}
   - component: {fileID: 591003284}
   - component: {fileID: 591003288}
+  - component: {fileID: 591003289}
   m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
@@ -1791,6 +1793,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &591003289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591003283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defe0bad16f945741b5ce085136ed1c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 20
 --- !u!43 &623259082
 Mesh:
   m_ObjectHideFlags: 0
@@ -4729,6 +4745,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1890163284, guid: 6143044c042bf9d4898b7705f0d000fb, type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1335267066104150840, guid: 6143044c042bf9d4898b7705f0d000fb, type: 3}
       propertyPath: m_Name
       value: RockEnemy (3)
@@ -4840,6 +4860,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 86975225}
+    - target: {fileID: 1890163284, guid: 6143044c042bf9d4898b7705f0d000fb, type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1335267066104150840, guid: 6143044c042bf9d4898b7705f0d000fb, type: 3}
       propertyPath: m_Name
       value: RockEnemy (2)
@@ -5961,6 +5985,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 86975225}
+    - target: {fileID: 1890163284, guid: 6143044c042bf9d4898b7705f0d000fb, type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1335267066104150840, guid: 6143044c042bf9d4898b7705f0d000fb, type: 3}
       propertyPath: m_Name
       value: RockEnemy (4)
@@ -6248,6 +6276,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 86975225}
+    - target: {fileID: 1890163284, guid: 6143044c042bf9d4898b7705f0d000fb, type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1335267066104150840, guid: 6143044c042bf9d4898b7705f0d000fb, type: 3}
       propertyPath: m_Name
       value: RockEnemy

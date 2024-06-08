@@ -16,9 +16,17 @@ public class SliceManager : MonoBehaviour
     public float attackCooldown = 0.5f; // Cooldown period after each attack
     private bool canAttack = true; // Flag to determine if the player can attack
 
+    public GameObject hitEffectPrefab; // Reference to the hit effect prefab
+
+    public Camera mainCamera; // Reference to the main camera
+
+
     void Start()
     {
-
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main; // Assign main camera if not set
+        }
     }
 
     // Update is called once per frame
@@ -50,27 +58,6 @@ public class SliceManager : MonoBehaviour
         }
     }
 
-    //public void Slice()
-    //{
-    //    Collider[] hits = Physics.OverlapBox(cutPlane.position, new Vector3(5, 0.1f, 5), cutPlane.rotation, layerMask);
-
-    //    if (hits.Length <= 0)
-    //        return;
-
-    //    for (int i = 0; i < hits.Length; i++)
-    //    {
-    //        SlicedHull hull = SliceObject(hits[i].gameObject, crossMaterial);
-    //        if (hull != null)
-    //        {
-    //            GameObject bottom = hull.CreateLowerHull(hits[i].gameObject, crossMaterial);
-    //            GameObject top = hull.CreateUpperHull(hits[i].gameObject, crossMaterial);
-    //            AddHullComponents(bottom);
-    //            AddHullComponents(top);
-    //            Destroy(hits[i].gameObject);
-    //        }
-    //    }
-    //}
-
     public void Slice()
     {
         Collider[] hits = Physics.OverlapBox(cutPlane.position, new Vector3(5, 0.1f, 5), cutPlane.rotation, layerMask);
@@ -81,12 +68,17 @@ public class SliceManager : MonoBehaviour
         for (int i = 0; i < hits.Length; i++)
         {
             Health enemyHealth = hits[i].gameObject.GetComponent<Health>(); // Get the Health component of the enemy
+            RockEnemy rockEnemy = hits[i].gameObject.GetComponent<RockEnemy>(); // Get the RockEnemy component
+
 
             if (enemyHealth != null && enemyHealth.currentHealth <= 0)
             {
                 // Skip slicing if the enemy is already dead
                 continue;
             }
+            
+            GameObject hitEffect = Instantiate(hitEffectPrefab, hits[i].transform.position, Quaternion.identity);
+            Destroy(hitEffect,0.5f);
 
             if (enemyHealth != null && enemyHealth.currentHealth <= damageThreshold)
             {
@@ -105,9 +97,11 @@ public class SliceManager : MonoBehaviour
             {
                 // If enemy's health is above the damage threshold, just apply damage
                 enemyHealth.TakeDamage(damageAmount);
+                rockEnemy.FlashFeedback();
             }
-        }
 
+            ShakeCamera();
+        }
         // Start the cooldown timer
         StartCoroutine(AttackCooldown());
     }
@@ -118,7 +112,11 @@ public class SliceManager : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true; // Enable attacking after the cooldown period
     }
-
+    public void ShakeCamera()
+    {
+        // Shake the camera using DOTween's DOShakePosition
+        mainCamera.transform.DOShakePosition(0.2f, 0.3f, 20, 90, false, true);
+    }
 
     public void AddHullComponents(GameObject go)
     {
