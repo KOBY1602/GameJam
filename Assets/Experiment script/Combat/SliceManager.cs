@@ -34,12 +34,10 @@ public class SliceManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Pressed LMB");
             cutPlane.GetChild(0).DOComplete();
             cutPlane.GetChild(0).DOLocalMoveX(cutPlane.GetChild(0).localPosition.x * -1, .05f).SetEase(Ease.OutExpo);
             //ShakeCamera();
             Slice();
-            Debug.Log("Cut");
         }
     }
 
