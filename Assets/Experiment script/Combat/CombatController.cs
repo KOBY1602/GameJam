@@ -63,7 +63,6 @@ public class CombatController : MonoBehaviour
             PlacementSystem.SetActive(false);
             Plane.SetActive(false);
         }
-        //else if (Input.GetKeyDown(KeyCode.)
 
 
         // Calculate horizontal velocity of the mouse

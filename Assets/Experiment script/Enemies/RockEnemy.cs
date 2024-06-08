@@ -444,7 +444,7 @@ public class RockEnemy : MonoBehaviour
     {
         if (isDead) return;
 
-        Debug.Log("Chasing player");
+        //Debug.Log("Chasing player");
         transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
     }
 
