@@ -4205,7 +4205,8 @@ MonoBehaviour:
   Plane: {fileID: 1263304063}
   SwordParent: {fileID: 0}
   firstPersonController: {fileID: 86975220}
-  FaceTarget: {fileID: 0}
+  FaceTarget: {fileID: 1590611599}
+  animationParent: {fileID: 0}
 --- !u!1 &1483835289
 GameObject:
   m_ObjectHideFlags: 0
