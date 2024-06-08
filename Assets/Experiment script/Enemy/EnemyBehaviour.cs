@@ -27,4 +27,14 @@ public class EnemyBehaviour : MonoBehaviour
         Rigidbody enemyRigidbody = GetComponent<Rigidbody>();
         enemyRigidbody.AddForce(-directionToPlayer * knockbackForce, ForceMode.Impulse);
     }
+    void OnCollisionEnter(Collision collision)
+    {
+        // Check if the colliding object has the target tag
+        if (collision.gameObject.CompareTag("Sword"))
+        {
+            UnityEngine.Debug.Log("Yes");
+
+            KnockBack();
+        }
+    }
 }

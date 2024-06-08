@@ -14,6 +14,8 @@ public class CombatController : MonoBehaviour
 
     public FirstPersonController firstPersonController;
     public FaceTarget FaceTarget;
+
+
     // Start is called before the first frame update
 
 
@@ -85,14 +87,5 @@ public class CombatController : MonoBehaviour
             isMovingRight = 3;
         }
     }
-    void OnCollisionEnter(Collision collision)
-    {
-        // Check if the colliding object has the target tag
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            UnityEngine.Debug.Log("Yes");
-
-
-        }
-    }
+   
 }
