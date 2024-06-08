@@ -15,12 +15,23 @@ public class CombatController : MonoBehaviour
     public FirstPersonController firstPersonController;
     public FaceTarget FaceTarget;
     // Start is called before the first frame update
+
+
+    //for mouse 
+    private Vector3 lastMousePosition;
+    private float horizontalVelocity;
+
+    private int isMovingRight; // 1 = right, 0 = left, 3 = not moving
     void Start()
     {
         InputManager.SetActive(false);
         PlacementSystem.SetActive(false);
         Plane.SetActive(false);
         firstPersonController = FindObjectOfType<FirstPersonController>();
+
+
+        // Initialize last mouse position
+        lastMousePosition = Input.mousePosition;
     }
 
     // Update is called once per frame
@@ -48,5 +59,40 @@ public class CombatController : MonoBehaviour
             Plane.SetActive(false);
         }
         //else if (Input.GetKeyDown(KeyCode.)
+
+
+        // Calculate horizontal velocity of the mouse
+        float currentMouseX = Input.mousePosition.x;
+        horizontalVelocity = (currentMouseX - lastMousePosition.x) / Time.deltaTime;
+
+        // Update last mouse position
+        lastMousePosition = Input.mousePosition;
+
+        // Determine mouse direction
+        if (horizontalVelocity > 0)
+        {
+            //UnityEngine.Debug.Log("Mouse is moving right");
+            isMovingRight = 1;
+        }
+        else if (horizontalVelocity < 0)
+        {
+            //UnityEngine.Debug.Log("Mouse is moving left");
+            isMovingRight = 0;
+        }
+        else
+        {
+            //UnityEngine.Debug.Log("Mouse is not moving horizontally");
+            isMovingRight = 3;
+        }
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        // Check if the colliding object has the target tag
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            UnityEngine.Debug.Log("Yes");
+
+
+        }
     }
 }
