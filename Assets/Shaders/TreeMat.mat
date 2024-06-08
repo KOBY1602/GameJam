@@ -49,8 +49,8 @@ Material:
     - PixelSnap: 0
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _DoodleIntensity: 4.41
-    - _Doodlespeed: 4.04
+    - _DoodleIntensity: 5.1
+    - _Doodlespeed: 2.25
     - _EnableExternalAlpha: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
