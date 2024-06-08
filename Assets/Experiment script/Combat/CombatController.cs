@@ -9,8 +9,13 @@ public class CombatController : MonoBehaviour
     [SerializeField] GameObject PlacementSystem;
     [SerializeField] GameObject PencilSword;
     [SerializeField] GameObject Plane;
+<<<<<<< Updated upstream:Assets/Experiment script/Combat/CombatController.cs
 
+=======
+    [SerializeField] GameObject SwordParent;
+>>>>>>> Stashed changes:Assets/Experiment script/CombatController.cs
     public FirstPersonController firstPersonController;
+    public FaceTarget FaceTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +31,14 @@ public class CombatController : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+            
             firstPersonController.Attacking();
             InputManager.SetActive(true);
             PlacementSystem.SetActive(true);
             PencilSword.SetActive(true);
             Plane.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
-
+            FaceTarget.AttackForm();
         }
         else
         {
