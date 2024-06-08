@@ -43,9 +43,21 @@ public class RockEnemy : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        if (!playerInSightRange && !playerInAttackRange) 
+        {
+            Debug.Log("Patrolling");
+            Patroling();
+        }
+        if (playerInSightRange && !playerInAttackRange)
+        {
+            Debug.Log("Chasing");
+            ChasePlayer();
+        }
+        if (playerInAttackRange && playerInSightRange)
+        {
+            Debug.Log("Attacking");
+            AttackPlayer();
+        }
     }
 
     private void Patroling()
