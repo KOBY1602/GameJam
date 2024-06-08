@@ -16,6 +16,9 @@ public class SliceManager : MonoBehaviour
     public float attackCooldown = 0.5f; // Cooldown period after each attack
     private bool canAttack = true; // Flag to determine if the player can attack
 
+    public GameObject hitEffectPrefab; // Reference to the hit effect prefab
+
+
     void Start()
     {
 
@@ -87,6 +90,9 @@ public class SliceManager : MonoBehaviour
                 // Skip slicing if the enemy is already dead
                 continue;
             }
+            
+            GameObject hitEffect = Instantiate(hitEffectPrefab, hits[i].transform.position, Quaternion.identity);
+            Destroy(hitEffect,0.5f);
 
             if (enemyHealth != null && enemyHealth.currentHealth <= damageThreshold)
             {
