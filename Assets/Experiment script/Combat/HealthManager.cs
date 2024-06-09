@@ -15,12 +15,14 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private float _regenerationRate = 5f; // Amount of health to regenerate per second
     [SerializeField] private float _regenerationDelay = 5f; // Delay before regeneration starts
     private bool _isRegenerating = false; // Flag to check if regeneration is in progress
-
+    [SerializeField] private GameManager GameManager;
     [SerializeField] private TMP_Text healthText;
 
+    [SerializeField] private GameObject DeathScreen;
     private void Awake()
     {
         _currentHealth = _maxHealth;
+        DeathScreen.SetActive(false);
     }
 
     public void TakeDamage(float amount)
@@ -30,8 +32,11 @@ public class HealthManager : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            controller.Die();
+
+            GameManager.StopTime();
+            DeathScreen.SetActive(true);
             _currentHealth = _maxHealth;
+
         }
 
         UpdateHealthBar();
