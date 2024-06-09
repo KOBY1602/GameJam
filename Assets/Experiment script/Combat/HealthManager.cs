@@ -10,7 +10,7 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private float _currentHealth;
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private FirstPersonController controller;
-    [SerializeField] private float _damageAmount;
+    //[SerializeField] private float _damageAmount;
 
     [SerializeField] private float _regenerationRate = 5f; // Amount of health to regenerate per second
     [SerializeField] private float _regenerationDelay = 5f; // Delay before regeneration starts
