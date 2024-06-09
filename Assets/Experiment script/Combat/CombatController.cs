@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CombatController : MonoBehaviour
@@ -10,13 +11,15 @@ public class CombatController : MonoBehaviour
     [SerializeField] GameObject PencilSword;
     [SerializeField] GameObject Plane;
 
-    [SerializeField] GameObject SwordParent;
+    [SerializeField] GameObject SwordHandle;
 
     public FirstPersonController firstPersonController;
     public FaceTarget FaceTarget;
     public GameObject animationParent;
     private Animator animator;
-
+    public float reloadTime;
+    public bool isReloading;
+    public bool isDefending;
     // Start is called before the first frame update
 
 
@@ -35,15 +38,32 @@ public class CombatController : MonoBehaviour
         Plane.SetActive(false);
         firstPersonController = FindObjectOfType<FirstPersonController>();
         animator = animationParent.GetComponent<Animator>();
+        if ( animator != null )
+        {
+            UnityEngine.Debug.Log("Valid");
+        }
         // Initialize last mouse position
         lastMousePosition = Input.mousePosition;
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetMouseButton(0))
+        //Defending
+         if(Input.GetMouseButton(1) && !isReloading)
+        {
+            isDefending = true;
+            firstPersonController.Attacking();
+            InputManager.SetActive(true);
+            PlacementSystem.SetActive(true);
+            PencilSword.SetActive(true);
+            Plane.SetActive(true);
+            Cursor.lockState = CursorLockMode.Confined;
+            FaceTarget.DefendForm();
+        }
+         //Attacking
+        else if (Input.GetMouseButton(0) && !isReloading)
         {
             
             firstPersonController.Attacking();
@@ -53,26 +73,32 @@ public class CombatController : MonoBehaviour
             Plane.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
             FaceTarget.AttackForm();
-
+            isDefending = false;
         }
         else
         {
-
+            isDefending = false;
             Cursor.lockState = CursorLockMode.Locked;
             firstPersonController.NotAttacking();
             InputManager.SetActive(false);
             PlacementSystem.SetActive(false);
             Plane.SetActive(false);
         }
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.R) && !isReloading)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            firstPersonController.NotAttacking();
-            InputManager.SetActive(false);
-            PlacementSystem.SetActive(false);
-            Plane.SetActive(false);
-            animator.Play("Reload1");
 
+            
+                SwordHandle.transform.localPosition = new Vector3((float)7.04, (float)2.83, (float)-14.34);
+                Cursor.lockState = CursorLockMode.Locked;
+                firstPersonController.NotAttacking();
+                InputManager.SetActive(false);
+                PlacementSystem.SetActive(false);
+                Plane.SetActive(false);
+                animator.SetTrigger("Reload");
+                StartCoroutine(ReloadTime());
+  
+            
+            
         }
         //else if (Input.GetKeyDown(KeyCode.)
 
@@ -100,6 +126,14 @@ public class CombatController : MonoBehaviour
             //UnityEngine.Debug.Log("Mouse is not moving horizontally");
             isMovingRight = 3;
         }
+    }
+    
+    private IEnumerator ReloadTime()
+    {
+        isReloading = true;
+        yield return new WaitForSeconds((float)3.4);
+        isReloading = false;
+       
     }
    
 }

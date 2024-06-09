@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sword
   - MAST_Holder
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -18,9 +19,9 @@ TagManager:
   - whatIsGround
   - whatIsPlayer
   - Enemy
+  - Projectiles
   - 
-  - 
-  - 
+  - Blocking
   - 
   - 
   - 
