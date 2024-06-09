@@ -20,6 +20,16 @@ public class CombatController : MonoBehaviour
     public float reloadTime;
     public bool isReloading;
     public bool isDefending;
+
+    public SliceManager sliceManager; // Reference to the SliceManager
+    public HealthManager healthManager; // Reference to the HealthManager
+
+    public int damageIncreaseAmount = 10; // Amount to increase damage per reload
+    public float maxHealthDecreaseAmount = 10f; // Amount to decrease max health per reload
+
+
+    public GameObject reloadParticlePrefab;
+    public Transform reloadLocation;
     // Start is called before the first frame update
 
 
@@ -86,19 +96,23 @@ public class CombatController : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.R) && !isReloading)
         {
+            //Reload Particles
+            GameObject reloadPart = Instantiate(reloadParticlePrefab, reloadLocation.transform.position, Quaternion.identity);
+            Destroy(reloadPart, 1f);
 
-            
-                SwordHandle.transform.localPosition = new Vector3((float)7.04, (float)2.83, (float)-14.34);
-                Cursor.lockState = CursorLockMode.Locked;
-                firstPersonController.NotAttacking();
-                InputManager.SetActive(false);
-                PlacementSystem.SetActive(false);
-                Plane.SetActive(false);
-                animator.SetTrigger("Reload");
-                StartCoroutine(ReloadTime());
-  
-            
-            
+            SwordHandle.transform.localPosition = new Vector3((float)7.04, (float)2.83, (float)-14.34);
+            Cursor.lockState = CursorLockMode.Locked;
+            firstPersonController.NotAttacking();
+            InputManager.SetActive(false);
+            PlacementSystem.SetActive(false);
+            Plane.SetActive(false);
+            animator.SetTrigger("Reload");
+
+            // Increase damage and decrease max health
+            sliceManager.damageAmount += damageIncreaseAmount;
+            healthManager.DecreaseMaxHealth(maxHealthDecreaseAmount);
+
+            StartCoroutine(ReloadTime());                   
         }
         //else if (Input.GetKeyDown(KeyCode.)
 

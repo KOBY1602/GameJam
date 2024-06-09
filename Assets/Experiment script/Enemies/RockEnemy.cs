@@ -93,7 +93,7 @@ public class RockEnemy : MonoBehaviour
     private void Patroling()
     {
         if (isDead) return;
-        UnityEngine.Debug.Log("Patrolling");
+        //UnityEngine.Debug.Log("Patrolling");
 
 
         if (!walkPointSet) SearchWalkPoint();
@@ -130,14 +130,14 @@ public class RockEnemy : MonoBehaviour
     private void ChasePlayer()
     {
         if (isDead) return;
-        UnityEngine.Debug.Log("Chasing");
+        //UnityEngine.Debug.Log("Chasing");
         transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
     }
 
     private void AttackPlayer()
     {
         if (isDead) return;
-        UnityEngine.Debug.Log("Attacking");
+        //UnityEngine.Debug.Log("Attacking");
         transform.position = Vector3.MoveTowards(transform.position, transform.position, attackSpeed * Time.deltaTime);
 
         transform.LookAt(player);

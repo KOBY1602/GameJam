@@ -29,6 +29,6 @@ public class Health : MonoBehaviour
     void Die()
     {
         // Perform death actions such as playing death animation, particle effects, etc.
-        Destroy(gameObject);
+        Destroy(gameObject, 2f);
     }
 }

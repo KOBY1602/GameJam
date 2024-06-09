@@ -48,6 +48,15 @@ public class HealthManager : MonoBehaviour
         }
     }
 
+    public void DecreaseMaxHealth(float amount)
+    {
+        Debug.Log("Called");
+        _maxHealth -= amount;
+        _maxHealth = Mathf.Clamp(_maxHealth, 0, float.MaxValue);
+        _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+        UpdateHealthBar();
+    }
+
     private void UpdateHealthBar()
     {
         _healthBarFill.fillAmount = _currentHealth / _maxHealth;
