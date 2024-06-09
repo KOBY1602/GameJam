@@ -64,8 +64,8 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DoodleFrameCount: 5
-    - _DoodleFrameTime: 0.55
+    - _DoodleFrameCount: 12
+    - _DoodleFrameTime: 0.45
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -81,7 +81,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DoodleMaxOffset: {r: 0.003, g: 0.003, b: 0, a: 0}
-    - _DoodleNoiseScale: {r: 30, g: 30, b: 1, a: 5}
+    - _DoodleMaxOffset: {r: 0.004, g: 0.004, b: 0, a: 0}
+    - _DoodleNoiseScale: {r: 35, g: 35, b: 1, a: 5}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

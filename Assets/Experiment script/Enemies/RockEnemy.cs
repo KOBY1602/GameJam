@@ -1,6 +1,7 @@
 using JetBrains.Rider.Unity.Editor;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class RockEnemy : MonoBehaviour
@@ -92,6 +93,8 @@ public class RockEnemy : MonoBehaviour
     private void Patroling()
     {
         if (isDead) return;
+        UnityEngine.Debug.Log("Patrolling");
+
 
         if (!walkPointSet) SearchWalkPoint();
 
@@ -127,15 +130,14 @@ public class RockEnemy : MonoBehaviour
     private void ChasePlayer()
     {
         if (isDead) return;
-
-        //Debug.Log("Chasing player");
+        UnityEngine.Debug.Log("Chasing");
         transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
     }
 
     private void AttackPlayer()
     {
         if (isDead) return;
-
+        UnityEngine.Debug.Log("Attacking");
         transform.position = Vector3.MoveTowards(transform.position, transform.position, attackSpeed * Time.deltaTime);
 
         transform.LookAt(player);
