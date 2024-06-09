@@ -207,7 +207,7 @@ public class RockEnemy : MonoBehaviour
     {
         if (enemyRenderer != null)
         {
-            Debug.Log("Changed Red");
+            //Debug.Log("Changed Red");
             enemyRenderer.material.color = Color.red;
             yield return new WaitForSeconds(0.5f); // Adjust the duration as needed
             enemyRenderer.material.color = originalColor;
