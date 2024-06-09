@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 38907731260124932}
   - component: {fileID: 6821691331313532666}
   - component: {fileID: 3118059846496331274}
-  - component: {fileID: 6186478192834194407}
+  - component: {fileID: 4996689264686844266}
   - component: {fileID: 8039264456472653010}
   m_Layer: 11
   m_Name: Sphere
@@ -94,12 +94,12 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6166728264073954736}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6186478192834194407
+--- !u!114 &4996689264686844266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d11997a0745842438cc18c081105924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffectPrefab: {fileID: 8460667080445658512, guid: a3e2c3406e02f2c4ba86cfb1604277bd, type: 3}
 --- !u!54 &8039264456472653010
 Rigidbody:
   m_ObjectHideFlags: 0
