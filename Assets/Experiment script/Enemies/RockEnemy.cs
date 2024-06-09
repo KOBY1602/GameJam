@@ -137,7 +137,7 @@ public class RockEnemy : MonoBehaviour
     private void AttackPlayer()
     {
         if (isDead) return;
-        UnityEngine.Debug.Log("Attacking");
+        //UnityEngine.Debug.Log("Attacking");
         transform.position = Vector3.MoveTowards(transform.position, transform.position, attackSpeed * Time.deltaTime);
 
         transform.LookAt(player);
