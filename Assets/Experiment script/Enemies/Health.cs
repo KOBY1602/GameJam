@@ -15,7 +15,6 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
-        //Debug.Log("Took DMG");
         if (currentHealth <= 0)
         {
             Die();
@@ -29,6 +28,6 @@ public class Health : MonoBehaviour
     void Die()
     {
         // Perform death actions such as playing death animation, particle effects, etc.
-        Destroy(gameObject, 2f);
+        Destroy(gameObject);
     }
 }

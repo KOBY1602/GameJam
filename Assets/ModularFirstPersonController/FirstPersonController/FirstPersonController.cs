@@ -541,8 +541,9 @@ public class FirstPersonController : MonoBehaviour
     }
     public void Die()
     {
-
+        Debug.Log("Called");
     }
+    
 }
 
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthManager : MonoBehaviour
 {
@@ -15,12 +16,14 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private float _regenerationDelay = 5f; // Delay before regeneration starts
     private bool _isRegenerating = false; // Flag to check if regeneration is in progress
 
+    [SerializeField] private TMP_Text healthText;
+
     private void Awake()
     {
         _currentHealth = _maxHealth;
     }
 
-    private void TakeDamage(float amount)
+    public void TakeDamage(float amount)
     {
         _currentHealth -= amount;
         _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
@@ -39,27 +42,31 @@ public class HealthManager : MonoBehaviour
         StartCoroutine(StartRegenerationDelay());
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (other.CompareTag("Projectile"))
-        {
-            Debug.Log("Hit");
-            TakeDamage(_damageAmount);
-        }
+        UpdateHealthText();
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        
+    }
+
+    private void UpdateHealthBar()
+    {
+        _healthBarFill.fillAmount = _currentHealth / _maxHealth;
     }
 
     public void DecreaseMaxHealth(float amount)
     {
-        Debug.Log("Called");
         _maxHealth -= amount;
         _maxHealth = Mathf.Clamp(_maxHealth, 0, float.MaxValue);
         _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
         UpdateHealthBar();
     }
 
-    private void UpdateHealthBar()
+    private void UpdateHealthText()
     {
-        _healthBarFill.fillAmount = _currentHealth / _maxHealth;
+        healthText.text = $"HP: {_currentHealth} / {_maxHealth}";
     }
 
     private IEnumerator StartRegenerationDelay()

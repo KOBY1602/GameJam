@@ -24,6 +24,7 @@ public class SliceManager : MonoBehaviour
     public AudioSource audioSource; // Reference to the AudioSource component
     public AudioClip hitSound; // Reference to the sound clip to play when an enemy is hit
 
+
     void Start()
     {
         if (mainCamera == null)
@@ -88,6 +89,8 @@ public class SliceManager : MonoBehaviour
             Destroy(hitEffect, 0.5f);
 
             // Play hit sound
+            audioSource.PlayOneShot(hitSound);
+
             audioSource.PlayOneShot(hitSound);
 
             if (enemyHealth != null && enemyHealth.currentHealth <= damageThreshold)

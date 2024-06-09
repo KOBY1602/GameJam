@@ -7,10 +7,12 @@ public class Blocking : MonoBehaviour
     
     
     public GameObject hitEffectPrefab;
-
+    public GameObject reloadLocation;
+    public float damageAmount;
     // Start is called before the first frame update
     void Start()
     {
+        reloadLocation = GameObject.Find("ReloadLocation");
          GameObject Controller = GameObject.Find("PlayerCamera");
          CombatController combatController = Controller.GetComponent<CombatController>();
     }
@@ -22,14 +24,18 @@ public class Blocking : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        
+        Debug.Log(collision.gameObject.name);
         // Check if the collision is with a target object
-        if (collision.collider.gameObject.CompareTag("Sword"))
+        if (collision.collider.gameObject.CompareTag("Sword") && GameObject.Find("PlayerCamera").GetComponent<CombatController>().isDefending)
         {
-            Debug.Log("Hit");
-            GameObject hitEffect = Instantiate(hitEffectPrefab, collision.transform.position, Quaternion.identity);
+            
+            GameObject hitEffect = Instantiate(hitEffectPrefab, reloadLocation.transform.position , Quaternion.identity);
              //destroy the projectile on collision
            Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            GameObject.Find("NewFPSController").GetComponent<HealthManager>().TakeDamage(damageAmount);
         }
     }
 }

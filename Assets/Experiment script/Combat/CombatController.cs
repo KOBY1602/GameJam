@@ -63,6 +63,7 @@ public class CombatController : MonoBehaviour
         //Defending
          if(Input.GetMouseButton(1) && !isReloading)
         {
+            PencilSword.GetComponent<BoxCollider>().enabled = true;
             isDefending = true;
             firstPersonController.Attacking();
             InputManager.SetActive(true);
@@ -84,6 +85,8 @@ public class CombatController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Confined;
             FaceTarget.AttackForm();
             isDefending = false;
+
+            PencilSword.GetComponent<BoxCollider>().enabled = false;
         }
         else
         {
@@ -93,6 +96,7 @@ public class CombatController : MonoBehaviour
             InputManager.SetActive(false);
             PlacementSystem.SetActive(false);
             Plane.SetActive(false);
+            PencilSword.GetComponent<BoxCollider>().enabled = false;
         }
         if(Input.GetKeyDown(KeyCode.R) && !isReloading)
         {
