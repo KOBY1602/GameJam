@@ -539,10 +539,7 @@ public class FirstPersonController : MonoBehaviour
     {
         mouseSensitivity = 2f;
     }
-    public void Die()
-    {
-        Debug.Log("Called");
-    }
+    
     
 }
 
