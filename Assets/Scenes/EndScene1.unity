@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072d02ab67550334b83152451f029848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Scene1
+  sceneName: EndScene2
   keycode: 32
 --- !u!114 &395072945
 MonoBehaviour:
