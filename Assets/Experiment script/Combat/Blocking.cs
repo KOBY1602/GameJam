@@ -9,6 +9,9 @@ public class Blocking : MonoBehaviour
     public GameObject hitEffectPrefab;
     public GameObject reloadLocation;
     public float damageAmount;
+    public SliceManager sliceManager;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,7 @@ public class Blocking : MonoBehaviour
         else if (collision.gameObject.CompareTag("Player"))
         {
             GameObject.Find("NewFPSController").GetComponent<HealthManager>().TakeDamage(damageAmount);
+            //sliceManager.ShakeCamera();
         }
     }
 }

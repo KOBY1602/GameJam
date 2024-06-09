@@ -147,7 +147,7 @@ public class RockEnemy : MonoBehaviour
             // Attack
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
 
-            rb.AddForce(transform.forward * 10f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 15f, ForceMode.Impulse);
             rb.AddForce(transform.up * 2, ForceMode.Impulse);
 
             Destroy(rb.gameObject, 3f);
