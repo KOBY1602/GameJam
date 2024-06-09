@@ -14,8 +14,8 @@ public class CombatController : MonoBehaviour
 
     public FirstPersonController firstPersonController;
     public FaceTarget FaceTarget;
-    public Animation AnimationParent;
-
+    public GameObject animationParent;
+    private Animator animator;
 
     // Start is called before the first frame update
 
@@ -34,8 +34,7 @@ public class CombatController : MonoBehaviour
         PlacementSystem.SetActive(false);
         Plane.SetActive(false);
         firstPersonController = FindObjectOfType<FirstPersonController>();
-
-        AnimationParent = gameObject.GetComponent<Animation>();
+        animator = animationParent.GetComponent<Animator>();
         // Initialize last mouse position
         lastMousePosition = Input.mousePosition;
     }
@@ -72,7 +71,7 @@ public class CombatController : MonoBehaviour
             InputManager.SetActive(false);
             PlacementSystem.SetActive(false);
             Plane.SetActive(false);
-            AnimationParent.Play("Reload1");
+            animator.Play("Reload1");
 
         }
         //else if (Input.GetKeyDown(KeyCode.)
