@@ -20,12 +20,19 @@ public class SliceManager : MonoBehaviour
 
     public Camera mainCamera; // Reference to the main camera
 
+    public AudioSource audioSource; // Reference to the AudioSource component
+    public AudioClip hitSound; // Reference to the sound clip to play when an enemy is hit
 
     void Start()
     {
         if (mainCamera == null)
         {
             mainCamera = Camera.main; // Assign main camera if not set
+        }
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>(); // Assign AudioSource if not set
         }
     }
 
@@ -70,15 +77,17 @@ public class SliceManager : MonoBehaviour
             Health enemyHealth = hits[i].gameObject.GetComponent<Health>(); // Get the Health component of the enemy
             RockEnemy rockEnemy = hits[i].gameObject.GetComponent<RockEnemy>(); // Get the RockEnemy component
 
-
             if (enemyHealth != null && enemyHealth.currentHealth <= 0)
             {
                 // Skip slicing if the enemy is already dead
                 continue;
             }
-            
+
             GameObject hitEffect = Instantiate(hitEffectPrefab, hits[i].transform.position, Quaternion.identity);
-            Destroy(hitEffect,0.5f);
+            Destroy(hitEffect, 0.5f);
+
+            // Play hit sound
+            audioSource.PlayOneShot(hitSound);
 
             if (enemyHealth != null && enemyHealth.currentHealth <= damageThreshold)
             {
@@ -112,10 +121,11 @@ public class SliceManager : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true; // Enable attacking after the cooldown period
     }
+
     public void ShakeCamera()
     {
         // Shake the camera using DOTween's DOShakePosition
-        mainCamera.transform.DOShakePosition(0.2f, 0.3f, 20, 90, false, true);
+        mainCamera.transform.DOShakePosition(0.3f, 0.5f, 20, 90, false, true);
     }
 
     public void AddHullComponents(GameObject go)

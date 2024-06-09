@@ -1,7 +1,7 @@
-
 using JetBrains.Rider.Unity.Editor;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class RockEnemy : MonoBehaviour
@@ -24,6 +24,10 @@ public class RockEnemy : MonoBehaviour
     //Attack Player
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+
+    //Attack Cooldown
+    public float attackCooldown = 2f; // Time in seconds before the enemy can be attacked again
+    private bool canBeAttacked = true;
 
     //States
     public bool isDead;
@@ -89,6 +93,8 @@ public class RockEnemy : MonoBehaviour
     private void Patroling()
     {
         if (isDead) return;
+        UnityEngine.Debug.Log("Patrolling");
+
 
         if (!walkPointSet) SearchWalkPoint();
 
@@ -124,23 +130,20 @@ public class RockEnemy : MonoBehaviour
     private void ChasePlayer()
     {
         if (isDead) return;
-
-        //Debug.Log("Chasing player");
+        UnityEngine.Debug.Log("Chasing");
         transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
     }
 
     private void AttackPlayer()
     {
         if (isDead) return;
-
+        UnityEngine.Debug.Log("Attacking");
         transform.position = Vector3.MoveTowards(transform.position, transform.position, attackSpeed * Time.deltaTime);
 
         transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
-        
-
             // Attack
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
 
@@ -161,9 +164,32 @@ public class RockEnemy : MonoBehaviour
         alreadyAttacked = false;
     }
 
+    public void TakeDamage(int damage)
+    {
+        if (canBeAttacked && !isDead)
+        {
+            health -= damage;
+            FlashFeedback();
+
+            if (health <= 0)
+            {
+                isDead = true;
+                Destroy();
+            }
+
+            canBeAttacked = false;
+            Invoke("ResetAttackCooldown", attackCooldown);
+        }
+    }
+
+    private void ResetAttackCooldown()
+    {
+        canBeAttacked = true;
+    }
+
     public void FlashFeedback()
     {
-         StartCoroutine(FlashRed());
+        StartCoroutine(FlashRed());
     }
 
     private void Destroy()
@@ -183,7 +209,7 @@ public class RockEnemy : MonoBehaviour
     {
         if (enemyRenderer != null)
         {
-            Debug.Log("Changed Red");
+            UnityEngine.Debug.Log("Changed Red");
             enemyRenderer.material.color = Color.red;
             yield return new WaitForSeconds(0.5f); // Adjust the duration as needed
             enemyRenderer.material.color = originalColor;
