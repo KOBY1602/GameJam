@@ -1,4 +1,3 @@
-
 using JetBrains.Rider.Unity.Editor;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +23,10 @@ public class RockEnemy : MonoBehaviour
     //Attack Player
     public float timeBetweenAttacks;
     bool alreadyAttacked;
+
+    //Attack Cooldown
+    public float attackCooldown = 2f; // Time in seconds before the enemy can be attacked again
+    private bool canBeAttacked = true;
 
     //States
     public bool isDead;
@@ -139,8 +142,6 @@ public class RockEnemy : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-        
-
             // Attack
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
 
@@ -161,9 +162,32 @@ public class RockEnemy : MonoBehaviour
         alreadyAttacked = false;
     }
 
+    public void TakeDamage(int damage)
+    {
+        if (canBeAttacked && !isDead)
+        {
+            health -= damage;
+            FlashFeedback();
+
+            if (health <= 0)
+            {
+                isDead = true;
+                Destroy();
+            }
+
+            canBeAttacked = false;
+            Invoke("ResetAttackCooldown", attackCooldown);
+        }
+    }
+
+    private void ResetAttackCooldown()
+    {
+        canBeAttacked = true;
+    }
+
     public void FlashFeedback()
     {
-         StartCoroutine(FlashRed());
+        StartCoroutine(FlashRed());
     }
 
     private void Destroy()

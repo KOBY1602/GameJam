@@ -539,8 +539,11 @@ public class FirstPersonController : MonoBehaviour
     {
         mouseSensitivity = 2f;
     }
-}
+    public void Die()
+    {
 
+    }
+}
 
 
 // Custom Editor

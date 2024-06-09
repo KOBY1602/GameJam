@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
-        Debug.Log("Took DMG");
+        //Debug.Log("Took DMG");
         if (currentHealth <= 0)
         {
             Die();
@@ -24,7 +24,7 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentHealth);
+        //Debug.Log(currentHealth);
     }
     void Die()
     {
