@@ -93,7 +93,7 @@ public class RockEnemy : MonoBehaviour
     private void Patroling()
     {
         if (isDead) return;
-        UnityEngine.Debug.Log("Patrolling");
+        //UnityEngine.Debug.Log("Patrolling");
 
 
         if (!walkPointSet) SearchWalkPoint();
@@ -130,7 +130,7 @@ public class RockEnemy : MonoBehaviour
     private void ChasePlayer()
     {
         if (isDead) return;
-        UnityEngine.Debug.Log("Chasing");
+        //UnityEngine.Debug.Log("Chasing");
         transform.position = Vector3.MoveTowards(transform.position, player.position, chaseSpeed * Time.deltaTime);
     }
 
@@ -209,7 +209,7 @@ public class RockEnemy : MonoBehaviour
     {
         if (enemyRenderer != null)
         {
-            UnityEngine.Debug.Log("Changed Red");
+            //Debug.Log("Changed Red");
             enemyRenderer.material.color = Color.red;
             yield return new WaitForSeconds(0.5f); // Adjust the duration as needed
             enemyRenderer.material.color = originalColor;

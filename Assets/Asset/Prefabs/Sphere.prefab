@@ -112,6 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitEffectPrefab: {fileID: 8460667080445658512, guid: a3e2c3406e02f2c4ba86cfb1604277bd, type: 3}
+  reloadLocation: {fileID: 0}
+  damageAmount: 30
 --- !u!54 &8039264456472653010
 Rigidbody:
   m_ObjectHideFlags: 0

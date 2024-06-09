@@ -17,11 +17,13 @@ public class SliceManager : MonoBehaviour
     private bool canAttack = true; // Flag to determine if the player can attack
 
     public GameObject hitEffectPrefab; // Reference to the hit effect prefab
+    public GameObject deathParticlePrefab;
 
     public Camera mainCamera; // Reference to the main camera
 
     public AudioSource audioSource; // Reference to the AudioSource component
     public AudioClip hitSound; // Reference to the sound clip to play when an enemy is hit
+
 
     void Start()
     {
@@ -89,6 +91,8 @@ public class SliceManager : MonoBehaviour
             // Play hit sound
             audioSource.PlayOneShot(hitSound);
 
+            audioSource.PlayOneShot(hitSound);
+
             if (enemyHealth != null && enemyHealth.currentHealth <= damageThreshold)
             {
                 // If enemy's health is below or equal to the damage threshold, slice it
@@ -99,6 +103,10 @@ public class SliceManager : MonoBehaviour
                     GameObject top = hull.CreateUpperHull(hits[i].gameObject, crossMaterial);
                     AddHullComponents(bottom);
                     AddHullComponents(top);
+
+
+                    GameObject deathPart = Instantiate(deathParticlePrefab, hits[i].transform.position, Quaternion.identity);
+                    Destroy(deathPart, 1f);
                     Destroy(hits[i].gameObject);
                 }
             }
